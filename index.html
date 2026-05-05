@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comunidade Cristã No Caminho | Campinas-SP</title>
+<meta name="description" content="Comunidade Cristã No Caminho — Igreja em Campinas-SP. Rua Rafael Paulo Teixeira de Oliveira, 224. Reuniões toda semana às 19:30.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #2A4035;
+    --verde-medio: #3D5C4A;
+    --dourado: #B8893A;
+    --dourado-claro: #D4A855;
+    --creme: #F5EDD8;
+    --creme-escuro: #EAD9BB;
+    --branco: #FDFAF4;
+    --texto: #1E2D25;
+    --texto-leve: #4A6355;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--branco);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(42, 64, 53, 0.97);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--creme);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .nav-logo span { color: var(--dourado-claro); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--creme-escuro);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--dourado-claro); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--creme); border-radius: 2px; transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #inicio {
+    min-height: 100vh;
+    background: var(--verde);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 64px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(184,137,58,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 80% at 10% 30%, rgba(61,92,74,0.8) 0%, transparent 70%);
+  }
+  .hero-cross {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.06;
+    font-size: 28rem;
+    color: var(--creme);
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    text-align: center;
+    padding: 2rem;
+    animation: fadeUp 1s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid rgba(184,137,58,0.5);
+    color: var(--dourado-claro);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 700;
+    color: var(--creme);
+    line-height: 1.05;
+    margin-bottom: 0.4rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--dourado-claro);
+  }
+  .hero-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: rgba(245,237,216,0.65);
+    margin: 1.5rem 0 2.5rem;
+    max-width: 480px;
+    margin-left: auto; margin-right: auto;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--dourado);
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.9rem 2.2rem;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .hero-cta:hover { background: var(--dourado-claro); transform: translateY(-2px); }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    color: rgba(245,237,216,0.4);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint::after {
+    content: '';
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(245,237,216,0.4), transparent);
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 7rem 2rem; }
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .divider {
+    width: 48px; height: 3px;
+    background: var(--dourado);
+    border-radius: 2px;
+    margin: 1.5rem 0;
+  }
+
+  /* ── SOBRE ── */
+  #sobre { background: var(--branco); }
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .sobre-text p {
+    color: var(--texto-leve);
+    line-height: 1.85;
+    margin-top: 1.2rem;
+    font-size: 1rem;
+  }
+  .sobre-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .stat-card {
+    background: var(--verde);
+    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--dourado-claro);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,237,216,0.65);
+    margin-top: 0.5rem;
+  }
+  .stat-card.accent { background: var(--dourado); }
+  .stat-card.accent .stat-num { color: var(--verde); }
+  .stat-card.accent .stat-label { color: rgba(42,64,53,0.75); }
+
+  /* ── AGENDA ── */
+  #agenda { background: var(--creme); }
+  .agenda-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .agenda-card {
+    background: var(--branco);
+    border-radius: 4px;
+    padding: 2rem 1.75rem;
+    border-left: 4px solid var(--verde);
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .agenda-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(42,64,53,0.1); }
+  .agenda-card:nth-child(2) { border-color: var(--dourado); }
+  .agenda-card:nth-child(3) { border-color: var(--verde-medio); }
+  .agenda-card:nth-child(4) { border-color: var(--dourado-claro); }
+  .agenda-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--creme-escuro);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .agenda-sabado {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--texto-leve);
+  }
+  .agenda-ministerio {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--texto);
+    margin: 0.75rem 0 0.5rem;
+  }
+  .agenda-hora {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--dourado);
+    letter-spacing: 0.08em;
+  }
+  .agenda-nota {
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--texto-leve);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  /* ── MINISTÉRIOS ── */
+  #ministerios { background: var(--verde); }
+  #ministerios .section-label { color: var(--dourado-claro); }
+  #ministerios .section-title { color: var(--creme); }
+  #ministerios .divider { background: var(--dourado-claro); }
+  .min-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .min-card {
+    border: 1px solid rgba(245,237,216,0.15);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+    transition: background 0.3s, transform 0.2s;
+    cursor: default;
+  }
+  .min-card:hover { background: rgba(245,237,216,0.07); transform: translateY(-4px); }
+  .min-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .min-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--creme);
+    margin-bottom: 0.75rem;
+  }
+  .min-desc {
+    font-size: 0.88rem;
+    color: rgba(245,237,216,0.6);
+    line-height: 1.75;
+  }
+
+  /* ── LOCALIZAÇÃO ── */
+  #localizacao { background: var(--branco); }
+  .local-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .local-info { }
+  .local-bloco { margin-bottom: 2rem; }
+  .local-bloco h3 {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 0.5rem;
+  }
+  .local-bloco p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    color: var(--texto);
+    line-height: 1.5;
+  }
+  .maps-btn {
+    display: inline-block;
+    background: var(--verde);
+    color: var(--creme);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+  .maps-btn:hover { background: var(--dourado); }
+  .map-embed {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(42,64,53,0.12);
+    border: 1px solid var(--creme-escuro);
+  }
+  .map-embed iframe { display: block; width: 100%; height: 380px; border: 0; }
+
+  /* ── CADASTRO ── */
+  #cadastro { background: var(--creme); }
+  .form-container {
+    max-width: 680px;
+    margin: 3rem auto 0;
+    background: var(--branco);
+    border-radius: 6px;
+    padding: 3rem;
+    box-shadow: 0 4px 32px rgba(42,64,53,0.08);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-group { margin-bottom: 1.4rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 0.5rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--creme);
+    border: 1.5px solid var(--creme-escuro);
+    border-radius: 3px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.92rem;
+    color: var(--texto);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--verde); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-submit {
+    width: 100%;
+    background: var(--verde);
+    color: var(--creme);
+    border: none;
+    padding: 1rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--dourado); transform: translateY(-2px); }
+  .form-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--texto-leve);
+    margin-top: 1rem;
+  }
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--verde);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--texto);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--creme);
+    margin-bottom: 0.5rem;
+  }
+  .footer-logo span { color: var(--dourado-claro); }
+  .footer-address {
+    font-size: 0.8rem;
+    color: rgba(245,237,216,0.5);
+    margin-bottom: 0.3rem;
+  }
+  .footer-cnpj {
+    font-size: 0.7rem;
+    color: rgba(245,237,216,0.3);
+    letter-spacing: 0.05em;
+  }
+  .footer-divider { width: 48px; height: 1px; background: rgba(245,237,216,0.15); margin: 1.5rem auto; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--verde); padding: 1.5rem 2rem; gap: 1.2rem; }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .sobre-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .sobre-stats { grid-template-columns: 1fr 1fr; }
+    .local-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-container { padding: 2rem 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#inicio">No <span>Caminho</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#sobre" onclick="closeNav()">Sobre</a></li>
+    <li><a href="#agenda" onclick="closeNav()">Agenda</a></li>
+    <li><a href="#ministerios" onclick="closeNav()">Ministérios</a></li>
+    <li><a href="#localizacao" onclick="closeNav()">Localização</a></li>
+    <li><a href="#cadastro" onclick="closeNav()">Cadastro</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-cross">✝</div>
+  <div class="hero-content">
+    <div class="hero-tag">Comunidade Cristã</div>
+    <h1 class="hero-title">No <em>Caminho</em></h1>
+    <p class="hero-verse">"Eu sou o caminho, a verdade e a vida." — João 14:6</p>
+    <a href="#agenda" class="hero-cta">Ver Programação →</a>
+  </div>
+  <div class="scroll-hint">Rolar</div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-text">
+        <p class="section-label">Quem Somos</p>
+        <h2 class="section-title">Uma família unida na fé</h2>
+        <div class="divider"></div>
+        <p>A Comunidade Cristã No Caminho é uma igreja evangélica localizada em Campinas-SP, comprometida com o ensino bíblico, o cuidado mútuo e a expansão do Reino de Deus através dos ministérios locais e missões.</p>
+        <p>Nossa caminhada é marcada pela oração, pelo louvor e pelo serviço — cada sábado, uma oportunidade de crescer juntos e alcançar nossa cidade.</p>
+      </div>
+      <div class="sobre-stats">
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Ministérios ativos</div>
+        </div>
+        <div class="stat-card accent">
+          <div class="stat-num">19:30</div>
+          <div class="stat-label">Horário dos cultos</div>
+        </div>
+        <div class="stat-card accent">
+          <div class="stat-num">Sáb</div>
+          <div class="stat-label">Reuniões semanais</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">SP</div>
+          <div class="stat-label">Campinas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+  <div class="container">
+    <p class="section-label">Programação Mensal</p>
+    <h2 class="section-title">Cada sábado, um encontro</h2>
+    <div class="divider"></div>
+    <div class="agenda-grid">
+      <div class="agenda-card">
+        <div class="agenda-num">1°</div>
+        <div class="agenda-sabado">Sábado do mês</div>
+        <div class="agenda-ministerio">Irmãs</div>
+        <div class="agenda-hora">⏰ 19:30</div>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-num">2°</div>
+        <div class="agenda-sabado">Sábado do mês</div>
+        <div class="agenda-ministerio">Cooperação Externa</div>
+        <div class="agenda-hora">⏰ 19:30</div>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-num">3°</div>
+        <div class="agenda-sabado">Sábado do mês</div>
+        <div class="agenda-ministerio">Missões</div>
+        <div class="agenda-hora">⏰ 19:30</div>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-num">4°</div>
+        <div class="agenda-sabado">Sábado do mês</div>
+        <div class="agenda-ministerio">Juventude</div>
+        <div class="agenda-hora">⏰ 19:30</div>
+      </div>
+    </div>
+    <p class="agenda-nota">Todos os cultos realizados na Rua Rafael Paulo Teixeira de Oliveira, 224 — Campinas-SP</p>
+  </div>
+</section>
+
+<!-- MINISTÉRIOS -->
+<section id="ministerios">
+  <div class="container">
+    <p class="section-label">Nossa Comunidade</p>
+    <h2 class="section-title" style="color:var(--creme)">Ministérios</h2>
+    <div class="divider" style="background:var(--dourado-claro)"></div>
+    <div class="min-grid">
+      <div class="min-card">
+        <div class="min-icon">🙏</div>
+        <div class="min-title">Irmãs</div>
+        <div class="min-desc">Espaço de comunhão, crescimento espiritual e fortalecimento da mulher cristã na vida prática e na fé.</div>
+      </div>
+      <div class="min-card">
+        <div class="min-icon">🌍</div>
+        <div class="min-title">Missões</div>
+        <div class="min-desc">Compromisso com a evangelização além dos muros da igreja — apoio a missionários e projetos locais e internacionais.</div>
+      </div>
+      <div class="min-card">
+        <div class="min-icon">⚡</div>
+        <div class="min-title">Juventude</div>
+        <div class="min-desc">Jovens conectados com propósito. Culto, louvor e ação para a geração que transforma sua cidade e o mundo.</div>
+      </div>
+      <div class="min-card">
+        <div class="min-icon">🤝</div>
+        <div class="min-title">Cooperação</div>
+        <div class="min-desc">Parceria com outras igrejas e ministérios externos, fortalecendo o Corpo de Cristo além das nossas fronteiras.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCALIZAÇÃO -->
+<section id="localizacao">
+  <div class="container">
+    <p class="section-label">Onde Estamos</p>
+    <h2 class="section-title">Como chegar</h2>
+    <div class="divider"></div>
+    <div class="local-grid">
+      <div class="local-info">
+        <div class="local-bloco">
+          <h3>Endereço</h3>
+          <p>Rua Rafael Paulo Teixeira de Oliveira, 224<br>Campinas — SP</p>
+        </div>
+        <div class="local-bloco">
+          <h3>Cultos</h3>
+          <p>Todo sábado<br>às 19:30</p>
+        </div>
+        <div class="local-bloco">
+          <h3>Contato</h3>
+          <p>comunidadecristanocaminho.org.br</p>
+        </div>
+        <a class="maps-btn"
+           href="https://www.google.com/maps/search/Rua+Rafael+Paulo+Teixeira+de+Oliveira+224+Campinas+SP"
+           target="_blank" rel="noopener">
+          Abrir no Google Maps →
+        </a>
+      </div>
+      <div class="map-embed">
+        <iframe
+          src="https://maps.google.com/maps?q=Rua+Rafael+Paulo+Teixeira+de+Oliveira+224+Campinas+SP&output=embed"
+          allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CADASTRO DE MEMBRO -->
+<section id="cadastro">
+  <div class="container">
+    <p class="section-label" style="text-align:center">Faça parte</p>
+    <h2 class="section-title" style="text-align:center">Cadastro de Membro</h2>
+    <div class="divider" style="margin:1.5rem auto"></div>
+    <div class="form-container">
+      <form id="membroForm" action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nome">Nome completo *</label>
+            <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+          </div>
+          <div class="form-group">
+            <label for="nascimento">Data de nascimento</label>
+            <input type="date" id="nascimento" name="nascimento">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefone">Telefone / WhatsApp *</label>
+            <input type="tel" id="telefone" name="telefone" required placeholder="(19) 9 0000-0000">
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="email@exemplo.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="endereco">Endereço</label>
+          <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro">
+        </div>
+        <div class="form-group">
+          <label for="ministerio">Ministério de interesse</label>
+          <select id="ministerio" name="ministerio">
+            <option value="">Selecione...</option>
+            <option>Irmãs</option>
+            <option>Missões</option>
+            <option>Juventude</option>
+            <option>Cooperação Externa</option>
+            <option>Mais de um</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="observacao">Observações</label>
+          <textarea id="observacao" name="observacao" placeholder="Como nos encontrou? Algo que gostaria de compartilhar?"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Enviar Cadastro</button>
+        <p class="form-note">Seus dados são usados exclusivamente pela Comunidade Cristã No Caminho.</p>
+      </form>
+      <div class="success-msg" id="successMsg">✝ Cadastro recebido com sucesso! Em breve entraremos em contato.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Comunidade Cristã <span>No Caminho</span></div>
+  <p class="footer-address">Rua Rafael Paulo Teixeira de Oliveira, 224 — Campinas-SP</p>
+  <div class="footer-divider"></div>
+  <p class="footer-cnpj">CNPJ: 64.757.502/0001-44 · comunidadecristanocaminho.org.br</p>
+</footer>
+
+<script>
+  // NAV MOBILE
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  // FORM SUBMIT (Formspree)
+  const form = document.getElementById('membroForm');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      const resp = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      if (resp.ok) {
+        form.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      } else {
+        alert('Erro ao enviar. Tente novamente ou entre em contato por telefone.');
+      }
+    } catch {
+      alert('Sem conexão. Verifique a internet e tente novamente.');
+    }
+  });
+
+  // ACTIVE NAV HIGHLIGHT
+  const sections = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navAs.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--dourado-claro)' : '';
+    });
+  });
+</script>
+</body>
+</html>
